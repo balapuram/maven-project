@@ -13,5 +13,11 @@ agent any
 				}
 			}
 		}
+		stage ('Deploy to stage'){
+
+			steps {
+				build 'deploy-to-stage'
+			}
+		}
 	}
 }
