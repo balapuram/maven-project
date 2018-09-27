@@ -19,5 +19,29 @@ agent any
 				build 'deploy-to-stage'
 			}
 		}
+
+		stage ('Deploy to Production'){
+
+			steps {
+
+				timeout (time:5, unit: 'DAYS'){
+					input message: "Aprrove PRODUCTION Deployment"
+				}
+
+				build 'deploy-to-prod'
+			}
+			post{
+				success{
+					echo 'code deployed successfully'
+					
+				}
+				failure{
+					echo 'code not deployed correctly'
+				}
+
+			}
+
+		
+		}
 	}
 }
